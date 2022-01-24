@@ -1,1 +1,1 @@
-# python
+# python exercises and learning resources
