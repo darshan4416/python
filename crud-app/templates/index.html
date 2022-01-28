@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form">
+        <form action="/add-emp/" method="POST">
+            <input type="text" name="name" id="name">
+            <input type="text" name="dept" id="dept">
+            <input type="text" name="dept_name" id="dept_name">
+            <input type="text" name="manager_name" id="manager_name">
+            <input type="submit" value="Add Employee">
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Dept</th>
+            <th>Dept Name</th>
+            <th>Manager Name</th>
+            <th>Actions</th>
+        </tr>
+        {% for emp in employees %}
+            <tr>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.dept }}</td>
+                <td>{{ emp.dept_name }}</td>
+                <td>{{ emp.manager_name }}</td>
+                <td>
+                    <a href="/delete/{{ emp.id }}">Delete</a>
+                    <br />
+                    <a href="/update/{{ emp.id }}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+ <h1>Department Table</h1>
+<div class="content">
+    <table>
+        <tr>
+            <th>Dept</th>
+            <th>Dept Name</th>
+            <th>Manager Name</th>
+            <th>Actions</th>
+        </tr>
+        {% for dep in department %}
+            <tr>
+                <td>{{ dep.dept }}</td>
+                <td>{{ dep.dept_name }}</td>
+                <td>{{ dep.manageer_name }}</td>
+                <td>
+                    <a href="/dept/delete/{{ dep.id }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
