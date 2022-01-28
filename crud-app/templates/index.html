@@ -11,7 +11,6 @@
         <form action="/add-emp/" method="POST">
             <input type="text" name="name" id="name">
             <input type="text" name="dept" id="dept">
-            <input type="text" name="dept_name" id="dept_name">
             <input type="text" name="manager_name" id="manager_name">
             <input type="submit" value="Add Employee">
         </form>
@@ -21,7 +20,6 @@
         <tr>
             <th>Name</th>
             <th>Dept</th>
-            <th>Dept Name</th>
             <th>Manager Name</th>
             <th>Actions</th>
         </tr>
@@ -29,7 +27,6 @@
             <tr>
                 <td>{{ emp.name }}</td>
                 <td>{{ emp.dept }}</td>
-                <td>{{ emp.dept_name }}</td>
                 <td>{{ emp.manager_name }}</td>
                 <td>
                     <a href="/delete/{{ emp.id }}">Delete</a>
@@ -44,14 +41,14 @@
     <table>
         <tr>
             <th>Dept</th>
-            <th>Dept Name</th>
+      
             <th>Manager Name</th>
             <th>Actions</th>
         </tr>
         {% for dep in department %}
             <tr>
                 <td>{{ dep.dept }}</td>
-                <td>{{ dep.dept_name }}</td>
+               
                 <td>{{ dep.manageer_name }}</td>
                 <td>
                     <a href="/dept/delete/{{ dep.id }}">Delete</a>

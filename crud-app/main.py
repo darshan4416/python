@@ -10,13 +10,11 @@ class Employee(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(40))
     dept = db.Column(db.String(40))
-    dept_name = db.Column(db.String(40))
     manager_name = db.Column(db.String(40))
 
 class Department(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     dept = db.Column(db.String(40),db.ForeignKey(Employee.dept))
-    dept_name = db.Column(db.String(40))
     manager_name = db.Column(db.String(40))
 
 @app.route('/', methods=['POST','GET'])
@@ -30,10 +28,9 @@ def index():
 def add():
     name = request.form["name"]
     dept = request.form["dept"]
-    dept_name = request.form["dept_name"]
     manager_name = request.form["manager_name"]
-    new_Emp = Employee(name=name, dept=dept, dept_name=dept_name, manager_name=manager_name)
-    new_Dept = Department(dept=dept, dept_name=dept_name, manager_name=manager_name)
+    new_Emp = Employee(name=name, dept=dept,  manager_name=manager_name)
+    new_Dept = Department(dept=dept,  manager_name=manager_name)
 
     db.session.add(new_Emp)
     db.session.add(new_Dept)
@@ -62,9 +59,25 @@ def delete(id):
             return redirect("/")
 
     except:
-        return "Something Went Wrong"
+        return "oops try again"
 
+@app.route('/update/<int:id>', methods = ["POST", "GET"])
+def update(id):
+    emp = Employee.query.get_or_404(id)
 
+    if request.method == 'POST':
+        emp.name = request.form["name"]
+        emp.dept = request.form["dept"]
+        emp.manageer_name = request.form["manager_name"]
+
+        try:
+            db.session.commit()
+            return redirect("/")
+        except:
+            return "Internet problem"
+
+    else:
+        return render_template("update.html", emp = emp)
 
 
 
