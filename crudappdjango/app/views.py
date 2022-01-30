@@ -38,11 +38,20 @@ def delete(request,id):
 
 def update(request,id):
     if request.method == 'GET':
-        employee = Employee.objects.filter(pk=id)
-        print(employee.get('name'))
+        employee = Employee.objects.get(pk=id)
+        data = {
+            "id":employee.id,
+            "name":employee.name,
+            "mname":employee.manager_name,
+            "dept":employee.dept.dept_name
+        }
+        print(data)
+        return render(request,'edit.html',data)
 
+def delete_dept(request,id):
+    Department.objects.get(pk=id).delete()
 
-        return HttpResponse("<h2>yes updated</h2>")
+    return redirect('index')
 
     
     

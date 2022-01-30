@@ -10,16 +10,16 @@
     
     <h1>Edit page</h1>
     <h1>Edit Form</h1>
-    <form action="/update/{{}}" method="POST">
+    <form action="/update/" method="POST">
         {%csrf_token%}
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" ><br>
+        <input type="text" id="name" name="name" value="{{name}}"><br>
 
         <label for="mname">Manager</label><br>
-        <input type="text" id="mname" name="mname" ><br><br>
+        <input type="text" id="mname" name="mname" value="{{mname}}"><br><br>
 
         <label for="dept">Department</label><br>
-        <input type="text" id="dept" name="dept"><br><br>
+        <input type="text" id="dept" name="dept" value="{{dept}}"><br><br>
 
         <input type="submit" value="Submit">
       </form>
