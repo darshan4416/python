@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <h1>Form</h1>
+    <form action="/add-emp/" method="POST">
+        {%csrf_token%}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" ><br>
+
+        <label for="mname">Manager</label><br>
+        <input type="text" id="mname" name="mname" ><br><br>
+
+        <label for="dept">Department</label><br>
+        <input type="text" id="dept" name="dept"><br><br>
+
+        <input type="submit" value="Submit">
+      </form>
+
+    <h2>Employee Details</h2>
+    
+    <table>
+        <tr>
+          <th>Name</th>
+          <th>Manager Name</th>
+          <th>Department</th>
+          <th>Actions</th>
+        </tr>
+        {% for emp in employees %}
+        <tr>
+          <td> {{emp.name}}</td>
+          <td> {{emp.manager_name}}</td>
+          <td>{{emp.dept}}</td>
+          <td><a href="update/{{emp.id}}">✏️</a></td>
+          <td><a href="delete/{{emp.id}}">🗑️</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Department Details</h2>
+    <table>
+        <tr>
+            <th>Department Name</td>
+        </tr>
+        {% for dept in departments %}
+        <tr>
+            <td>{{dept.dept_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+   
+        
+   
+
+
+</body>
+</html>
