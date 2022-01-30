@@ -47,6 +47,16 @@ def update(request,id):
         }
         print(data)
         return render(request,'edit.html',data)
+    else:
+        employee = Employee.objects.get(pk=id)
+
+        employee.name = request.POST.get('name')
+        employee.manager_name = request.POST.get('mname')
+        employee.dept_name = request.POST.get('dept')
+
+        employee.save()
+        return redirect('index')
+        
 
 def delete_dept(request,id):
     Department.objects.get(pk=id).delete()

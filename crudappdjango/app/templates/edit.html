@@ -10,7 +10,7 @@
     
     <h1>Edit page</h1>
     <h1>Edit Form</h1>
-    <form action="/update/" method="POST">
+    <form action="/update/{{id}}/" method="POST">
         {%csrf_token%}
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" value="{{name}}"><br>
